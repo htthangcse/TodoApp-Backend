@@ -1,4 +1,4 @@
-import { IsString, IsNotEmpty, IsOptional, IsEnum, IsDateString } from 'class-validator';
+import { IsString, IsNotEmpty, IsOptional, IsEnum, IsDateString, MinLength, MaxLength } from 'class-validator';
 
 export enum TodoStatus {
   PENDING = 'pending',
@@ -9,10 +9,14 @@ export enum TodoStatus {
 export class CreateTodoDto {
   @IsString()
   @IsNotEmpty()
+  @MinLength(5)
+  @MaxLength(50)
   title: string;
 
   @IsString()
   @IsNotEmpty()
+  @MinLength(5)
+  @MaxLength(256)
   content: string;
 
   @IsEnum(TodoStatus)
@@ -27,10 +31,14 @@ export class CreateTodoDto {
 export class UpdateTodoDto {
   @IsString()
   @IsOptional()
+  @MinLength(5)
+  @MaxLength(50)
   title?: string;
 
   @IsString()
   @IsOptional()
+  @MinLength(5)
+  @MaxLength(256)
   content?: string;
 
   @IsEnum(TodoStatus)
