@@ -15,4 +15,12 @@ export class TodoService {
     };
     return this.todoModel.create(data);
   }
+
+  async getTodos() {
+    return this.todoModel.find().exec();
+  }
+
+  async getTodo(id: string) {
+    return this.todoModel.findById(id).exec();
+  }
 }

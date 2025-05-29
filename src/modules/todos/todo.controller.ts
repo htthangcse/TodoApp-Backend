@@ -10,4 +10,14 @@ export class TodoController {
   createTodo(@Body() createTodoDto: CreateTodoDto) {
     return this.todosService.createTodo(createTodoDto);
   }
+
+  @Get()
+  getTodos() {
+    return this.todosService.getTodos();
+  }
+
+  @Get('/:id')
+  getTodo(@Param('id') id: string) {
+    return this.todosService.getTodo(id);
+  }
 }
