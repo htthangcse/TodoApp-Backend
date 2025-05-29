@@ -23,4 +23,16 @@ export class TodoService {
   async getTodo(id: string) {
     return this.todoModel.findById(id).exec();
   }
+
+  async updateTodo(id: string, updateDto: UpdateTodoDto) {
+    const data: Partial<Todo> = {
+      ...updateDto,
+      datetime: updateDto.datetime ? new Date(updateDto.datetime) : undefined,
+    };
+    return this.todoModel.findByIdAndUpdate(id, data, { new: true }).exec();
+  }
+
+  async deleteTodo(id: string) {
+    return this.todoModel.findByIdAndDelete(id).exec();
+  }
 }

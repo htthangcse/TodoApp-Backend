@@ -20,4 +20,14 @@ export class TodoController {
   getTodo(@Param('id') id: string) {
     return this.todosService.getTodo(id);
   }
+
+  @Put('/:id')
+  updateTodo(@Param('id') id: string, @Body() updateTodoDto: UpdateTodoDto) {
+    return this.todosService.updateTodo(id, updateTodoDto);
+  }
+
+  @Delete('/:id')
+  deleteTodo(@Param('id') id: string) {
+    return this.todosService.deleteTodo(id);
+  }
 }
